@@ -39,18 +39,7 @@ void parent(pid_t pid, int sv[2])
   close(sv[1]);
 }
 
-/**
- * Create a child function that is given the socket descriptors and does the
- * following:
- * 0) closes the unneeded side of the socketpair.
- * 1) Reads messages from the socket until EOF is reached:
- *  a) Scans the message and rot13's each character.  Uppercase characters
- *   should remain uppercase, lowercase should remain lowercase.
- *   The conversion function is:
- *    a-z -> n-z,a-m
- *  b) Writes the converted message back to the socket.
- * 2) closes the socket on EOF and exits.
- */
+
 void child(int sv[2])
 {
 
@@ -83,13 +72,7 @@ for (int i = 0; i < r; i++) {
 
 }
 
-/**
- * Complete the main function that performs the following:
- * 1) Creates a socketpair (man 2 socketpair), it should likely be a SOCK_STREAM
- *    socket.
- * 2) Forks a new process and launches the parent() / child() functions
- *    accordingly.
- */
+
 int main(void)
 {
   int sv[2];
